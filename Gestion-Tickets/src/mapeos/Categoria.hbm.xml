@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="datos.Categoria" table="categoria">
+        <id name="idCategoria" column="idCategoria">
+            <generator class="identity"/>
+        </id>
+        <property name="nombre" column="nombre_categoria" type="string" unique="true" not-null="true"/>
+        <set name="tickets" table="ticket_has_categoria" inverse="true" lazy="true">
+            <key column="idCategoria"/>
+            <many-to-many column="idTicket" class="datos.Ticket"/>
+        </set>
+    </class>
+</hibernate-mapping>

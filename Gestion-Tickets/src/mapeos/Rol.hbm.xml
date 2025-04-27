@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="datos.Rol" table="rol">
+        <id name="idRol" column="idRol">
+            <generator class="identity"/>
+        </id>
+        <property name="nombreRol" column="nombre_rol" type="string" unique="true" not-null="true"/>
+        <set name="usuarios" inverse="true" cascade="all-delete-orphan">
+            <key column="idRol"/>
+            <one-to-many class="datos.Usuario"/>
+        </set>
+    </class>
+</hibernate-mapping>

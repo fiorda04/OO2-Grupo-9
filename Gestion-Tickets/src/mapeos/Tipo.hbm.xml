@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="datos.Tipo" table="tipo">
+        <id name="idTipo" column="idTipo">
+            <generator class="identity"/>
+        </id>
+        <property name="nombreTipo" column="nombre_tipo" type="string" unique="true" not-null="true"/>
+        <set name="tickets" inverse="true">
+            <key column="idTipo"/>
+            <one-to-many class="datos.Ticket"/>
+        </set>
+    </class>
+</hibernate-mapping>

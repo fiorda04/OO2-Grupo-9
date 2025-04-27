@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="datos.Estado" table="estado">
+        <id name="idEstado" column="idEstado">
+            <generator class="identity"/>
+        </id>
+        <property name="nombreEstado" column="nombre_estado" type="string" unique="true" not-null="true"/>
+        <set name="tickets" inverse="true" cascade="all-delete-orphan">
+            <key column="idEstado"/>
+            <one-to-many class="datos.Ticket"/>
+        </set>
+    </class>
+</hibernate-mapping>
