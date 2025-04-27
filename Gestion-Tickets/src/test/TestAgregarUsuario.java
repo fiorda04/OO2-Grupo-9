@@ -11,14 +11,14 @@ public class TestAgregarUsuario {
 
         try {
             // Intentamos traer el rol con ID 1 directamente desde el DAO
-            Rol rolAdmin = rolDao.traer(2);
+            Rol rolAdmin = rolDao.traer(3);
 
             if (rolAdmin != null) {
-                long ultimoIdUsuario = usuarioABM.agregar("Santiago", "Fiordalisi", 35000000, "santi.fiorda@example.com", "123-456-7890",
-                        "Fiorda", "password123", rolAdmin);
+                long ultimoIdUsuario = usuarioABM.agregar("Santiago", "Fiordalisi", 1234, "santi.fiordaaaa@example.com", "123-456-7890",
+                        "Fiorda01|", "password123", rolAdmin);
                 System.out.printf("Id usuario agregado: %d con rol: %s\n", ultimoIdUsuario, rolAdmin);
             } else {
-                System.out.println("No se encontró el rol con ID 2 para asignar al usuario.");
+                System.out.println("No se encontró el rol con ID 3 para asignar al usuario.");
             }
         } catch (Exception e) {
             e.printStackTrace();
