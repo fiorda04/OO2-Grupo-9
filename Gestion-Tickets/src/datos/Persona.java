@@ -1,7 +1,7 @@
 package datos;
 
 public abstract class Persona {
-	protected int idPersona;
+	protected long idPersona;
 	protected String nombre;
 	protected String apellido;
 	protected int dni;
@@ -19,11 +19,11 @@ public abstract class Persona {
 		this.telefono = telefono;
 	}
 
-	public int getIdPersona() {
+	public long getIdPersona() {
 		return idPersona;
 	}
 
-	protected void setIdPersona(int idPersona) {
+	protected void setIdPersona(long idPersona) {
 		this.idPersona = idPersona;
 	}
 

@@ -5,7 +5,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class Ticket {
-    private int idTicket;
+    private long idTicket;
     private String titulo;
     private String descripcion;
     private LocalDate fechaCreacion;
@@ -32,11 +32,11 @@ public class Ticket {
         this.respuesta = null; // Se inicializa como null
     }
 
-    public int getIdTicket() {
+    public long getIdTicket() {
         return idTicket;
     }
 
-    protected void setIdTicket(int idTicket) {
+    protected void setIdTicket(long idTicket) {
         this.idTicket = idTicket;
     }
 

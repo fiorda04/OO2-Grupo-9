@@ -4,7 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class Rol {
-	private int idRol;
+	private long idRol;
 	private String nombreRol;
 	private Set<Usuario> usuarios = new HashSet<>(); // Agregamos la colección de Usuarios
 
@@ -15,11 +15,11 @@ public class Rol {
 		this.nombreRol = nombreRol;
 	}
 
-	public int getIdRol() {
+	public long getIdRol() {
 		return idRol;
 	}
 
-	protected void setIdRol(int idRol) {
+	protected void setIdRol(long idRol) {
 		this.idRol = idRol;
 	}
 

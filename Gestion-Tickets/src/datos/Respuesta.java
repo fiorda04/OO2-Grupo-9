@@ -3,7 +3,7 @@ package datos;
 import java.time.LocalDate;
 
 public class Respuesta {
-	private int idRespuesta;
+	private long idRespuesta;
 	private String contenido;
 	private LocalDate fechaResp;
 	private Usuario autor; // Relación muchos a uno
@@ -19,11 +19,11 @@ public class Respuesta {
         this.fechaResp = LocalDate.now();
     }
 
-	public int getIdRespuesta() {
+	public long getIdRespuesta() {
 		return idRespuesta;
 	}
 
-	protected void setIdRespuesta(int idRespuesta) {
+	protected void setIdRespuesta(long idRespuesta) {
 		this.idRespuesta = idRespuesta;
 	}
 
