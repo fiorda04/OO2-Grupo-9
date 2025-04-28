@@ -51,11 +51,29 @@ public class UsuarioABM {
     }
 
     public void modificar(Usuario usuario) throws Exception {
+        Usuario usuarioExistente = usuarioDao.traer(usuario.getIdPersona());
+        if (usuarioExistente == null) {
+            throw new Exception("No existe el usuario con el ID proporcionado para modificar.");
+        }
+
         // verifico si existe otro usuario con el mismo nombre de usuario
         Usuario existentePorNombreUsuario = usuarioDao.traer(usuario.getNombreUsuario());
         if (existentePorNombreUsuario != null && existentePorNombreUsuario.getIdPersona() != usuario.getIdPersona()) {
             throw new Exception("Ya existe otro usuario con ese nombre de usuario.");
         }
+
+        // verifico si existe otra persona con el mismo DNI
+        Persona existentePorDni = personaDao.traerPorDni(usuario.getDni());
+        if (existentePorDni != null && existentePorDni.getIdPersona() != usuario.getIdPersona()) {
+            throw new Exception("Ya existe otra persona con ese DNI.");
+        }
+
+        // verifico si existe otra persona con el mismo email
+        Persona existentePorEmail = personaDao.traerPorEmail(usuario.getEmail());
+        if (existentePorEmail != null && existentePorEmail.getIdPersona() != usuario.getIdPersona()) {
+            throw new Exception("Ya existe otra persona con ese email.");
+        }
+
         usuarioDao.actualizar(usuario);
     }
 
