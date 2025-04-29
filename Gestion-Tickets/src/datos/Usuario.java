@@ -2,17 +2,17 @@ package datos;
 
 public class Usuario extends Persona {
 	private String nombreUsuario;
-	private String contraseña;
+	private String contrasenia;
 	private Rol rol;
 
 	public Usuario() {
 	}
 
 	public Usuario(String nombre, String apellido, int dni, String email, String telefono, String nombreUsuario,
-			String contraseña, Rol rol) {
+			String contrasenia, Rol rol) {
 		super(nombre, apellido, dni, email, telefono);
 		this.nombreUsuario = nombreUsuario;
-		this.contraseña = contraseña;
+		this.contrasenia = contrasenia;
 		this.rol = rol;
 	}
 
@@ -24,12 +24,12 @@ public class Usuario extends Persona {
 		this.nombreUsuario = nombreUsuario;
 	}
 
-	public String getContraseña() {
-		return contraseña;
+	public String getContrasenia() {
+		return contrasenia;
 	}
 
-	public void setContraseña(String contraseña) {
-		this.contraseña = contraseña;
+	public void setContrasenia(String contrasenia) {
+		this.contrasenia = contrasenia;
 	}
 
 	public Rol getRol() {
@@ -42,7 +42,7 @@ public class Usuario extends Persona {
 
 	@Override
 	public String toString() {
-		return "Usuario [" + super.toString() + ", nombreUsuario=" + nombreUsuario + ", contraseña=" + contraseña
+		return "Usuario [" + super.toString() + ", nombreUsuario=" + nombreUsuario + ", contrasenia=" + contrasenia
 				+ ", rol=" + rol + "]";
 	}
 }

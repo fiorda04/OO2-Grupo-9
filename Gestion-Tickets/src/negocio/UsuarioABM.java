@@ -31,7 +31,7 @@ public class UsuarioABM {
 
 
     public long agregar(String nombre, String apellido, int dni, String email, String telefono,
-                        String nombreUsuario, String contraseña, Rol rol) throws Exception {
+                        String nombreUsuario, String contrasenia, Rol rol) throws Exception {
         Persona personaPorDni = personaDao.traerPorDni(dni); // veo si el DNI ya existe
         if (personaPorDni != null) {
             throw new Exception("Ya existe una persona con el DNI ingresado.");
@@ -46,7 +46,7 @@ public class UsuarioABM {
             throw new Exception("Ya existe un usuario con ese nombre de usuario.");
         }
 
-        Usuario usuario = new Usuario(nombre, apellido, dni, email, telefono, nombreUsuario, contraseña, rol);
+        Usuario usuario = new Usuario(nombre, apellido, dni, email, telefono, nombreUsuario, contrasenia, rol);
         return usuarioDao.agregar(usuario);
     }
 

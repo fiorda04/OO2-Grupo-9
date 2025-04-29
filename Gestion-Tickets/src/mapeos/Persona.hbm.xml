@@ -14,7 +14,7 @@
         <joined-subclass name="datos.Usuario" table="usuario">
             <key column="idpersona"/>
             <property name="nombreUsuario" column="nombre_usuario" type="string" unique="true" not-null="true"/>
-            <property name="contraseña" column="contraseña" type="string" not-null="true"/>
+            <property name="contrasenia" column="contrasenia" type="string" not-null="true"/>
             <many-to-one name="rol" class="datos.Rol" column="idrol" not-null="true" fetch="join"/>
         </joined-subclass>
     </class>

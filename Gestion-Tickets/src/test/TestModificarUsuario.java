@@ -21,7 +21,7 @@ public class TestModificarUsuario {
                 usuarioOriginal.setEmail("checo.modificado@gmail.com"); 
                 usuarioOriginal.setTelefono("11-5555-4444");
                 usuarioOriginal.setNombreUsuario("ChecoPModificado"); 
-                usuarioOriginal.setContraseña("nuevaClave123");
+                usuarioOriginal.setContrasenia("nuevaClave123");
                 usuarioABM.modificar(usuarioOriginal);
                 System.out.println("Se modifico Usuario con ID 1");
             } else {
@@ -42,7 +42,7 @@ public class TestModificarUsuario {
             } else {
                 System.out.println("No se encontraron usuarios con ID 1 o 2 para la prueba de nombre de usuario duplicado.");
             }
-
+            
             // Prueba de modificar el DNI a uno ya existente (1234567 del usuario con ID 2)
             System.out.println("\n--- Intento de modificar DNI a uno existente (1234567) ---");
             Usuario usuarioParaModificarDniDuplicado = usuarioABM.traer(1L);

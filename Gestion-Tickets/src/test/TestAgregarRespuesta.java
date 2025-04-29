@@ -16,8 +16,8 @@ public class TestAgregarRespuesta {
     	TicketDao ticketDao = new TicketDao();
 
         try {
-        	Usuario usuario = usuarioDao.traer(1);
-        	Ticket ticket = ticketDao.traer(2);
+        	Usuario usuario = usuarioDao.traer(1L);
+        	Ticket ticket = ticketDao.traer(1L);
         	
         	if (usuario != null) {
         		System.out.println("Usuario: " + usuario);
