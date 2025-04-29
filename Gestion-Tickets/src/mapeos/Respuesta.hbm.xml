@@ -9,6 +9,6 @@
         <property name="contenido" column="contenido" type="string" not-null="true"/>
         <property name="fechaResp" column="fecha_respuesta" type="LocalDate" not-null="true"/>
         <many-to-one name="autor" class="datos.Usuario" column="idAutor" not-null="true" unique="false"/>
-        <one-to-one name="ticket" class="datos.Ticket"/>
+        <many-to-one name="ticket" class="datos.Ticket" column="idticket" not-null="true" unique="true"/>
     </class>
 </hibernate-mapping>
