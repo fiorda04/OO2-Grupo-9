@@ -4,7 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class Prioridad {
-	private int idPrioridad;
+	private long idPrioridad;
 	private String nombrePrioridad;
 	private Set<Ticket> tickets = new HashSet<>();
 
@@ -15,11 +15,11 @@ public class Prioridad {
 		this.nombrePrioridad = nombrePrioridad;
 	}
 
-	public int getIdPrioridad() {
+	public long getIdPrioridad() {
 		return idPrioridad;
 	}
 
-	protected void setIdPrioridad(int idPrioridad) {
+	protected void setIdPrioridad(long idPrioridad) {
 		this.idPrioridad = idPrioridad;
 	}
 

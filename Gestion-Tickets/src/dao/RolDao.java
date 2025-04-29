@@ -59,7 +59,7 @@ public class RolDao {
         }
     }
 
-    public Rol traer(int idRol) {
+    public Rol traer(long idRol) { // ¡CAMBIAR int a long!
         Rol objeto = null;
         try {
             iniciaOperacion();

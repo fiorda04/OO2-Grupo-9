@@ -4,7 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class Estado {
-	private int idEstado;
+	private long idEstado;
 	private String nombreEstado;
 	private Set<Ticket> tickets = new HashSet<>();
 
@@ -15,11 +15,11 @@ public class Estado {
 		this.nombreEstado = nombreEstado;
 	}
 
-	public int getIdEstado() {
+	public long getIdEstado() {
 		return idEstado;
 	}
 
-	protected void setIdEstado(int idEstado) {
+	protected void setIdEstado(long idEstado) {
 		this.idEstado = idEstado;
 	}
 

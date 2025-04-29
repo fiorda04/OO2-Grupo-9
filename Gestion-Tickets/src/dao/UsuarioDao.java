@@ -61,6 +61,26 @@ public class UsuarioDao {
             session.close();
         }
     }
+    
+    public void eliminar(String nombreUsuario) throws HibernateException {
+        try {
+            iniciaOperacion();
+            Query query = session.createQuery("delete Usuario u where u.nombreUsuario = :nombreUsuario");
+            query.setParameter("nombreUsuario", nombreUsuario);
+            int result = query.executeUpdate();
+            tx.commit();
+            if (result > 0) {
+                System.out.println("Usuario con nombre de usuario '" + nombreUsuario + "' eliminado.");
+            } else {
+                System.out.println("No se encontró usuario con nombre de usuario '" + nombreUsuario + "' para eliminar.");
+            }
+        } catch (HibernateException he) {
+            manejaExcepcion(he);
+        } finally {
+            session.close();
+        }
+    }
+
 
     public Usuario traer(long idUsuario) {
         Usuario objeto = null;
@@ -77,7 +97,8 @@ public class UsuarioDao {
         Usuario usuario = null;
         try {
             iniciaOperacion();
-            usuario = (Usuario) session.createQuery("from Usuario u where u.nombreUsuario = :nombreUsuario", Usuario.class)
+            // Consulta HQL con fetch join para cargar el rol de forma eager
+            usuario = (Usuario) session.createQuery("select u from Usuario u left join fetch u.rol where u.nombreUsuario = :nombreUsuario", Usuario.class)
                     .setParameter("nombreUsuario", nombreUsuario)
                     .uniqueResult();
         } finally {
@@ -90,8 +111,8 @@ public class UsuarioDao {
         Usuario usuario = null;
         try {
             iniciaOperacion();
-            // Consulta HQL para traer un Usuario cuyo DNI en la tabla Persona coincida
-            usuario = (Usuario) session.createQuery("select u from Usuario u join u.persona p where p.dni = :dni", Usuario.class)
+            // Consulta HQL con fetch join para cargar el rol de forma eager
+            usuario = (Usuario) session.createQuery("select u from Usuario u left join fetch u.rol where u.dni = :dni", Usuario.class)
                     .setParameter("dni", dni)
                     .uniqueResult();
         } finally {
@@ -105,6 +126,20 @@ public class UsuarioDao {
         try {
             iniciaOperacion();
             Query<Usuario> query = session.createQuery("select u from Usuario u left join fetch u.rol order by u.nombreUsuario asc", Usuario.class);
+            lista = query.getResultList();
+        } finally {
+            session.close();
+        }
+        return lista;
+    }
+    
+    public List<Usuario> traerPorRol(long idRol) {
+        List<Usuario> lista = null;
+        try {
+            iniciaOperacion();
+            // Consulta HQL con fetch join para cargar el rol y filtrar por idRol
+            Query<Usuario> query = session.createQuery("select u from Usuario u left join fetch u.rol r where r.idRol = :idRol order by u.nombreUsuario asc", Usuario.class);
+            query.setParameter("idRol", idRol);
             lista = query.getResultList();
         } finally {
             session.close();
