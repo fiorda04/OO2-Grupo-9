@@ -10,11 +10,11 @@
         <property name="descripcion" column="descripcion" type="string" not-null="true"/>
         <property name="fechaCreacion" column="fecha_creacion" type="LocalDate" not-null="true"/>
         <property name="fechaModEst" column="fecha_mod_est" type="LocalDate" not-null="true"/>
-        <many-to-one name="usuario" class="datos.Usuario" column="idPersona" not-null="true" unique="true"/>
-        <many-to-one name="estado" class="datos.Estado" column="idEstado" not-null="true"/>
-        <many-to-one name="prioridad" class="datos.Prioridad" column="idPrioridad" not-null="false"/>
-        <many-to-one name="tipo" class="datos.Tipo" column="idTipo" not-null="true"/>
-        <set name="categorias" table="ticket_has_categoria" cascade="all" lazy="true">
+        <many-to-one name="usuario" class="datos.Usuario" column="idPersona" not-null="true" fetch="join" lazy="false"/>
+        <many-to-one name="estado" class="datos.Estado" column="idEstado" not-null="true" fetch="join" lazy="false"/>
+        <many-to-one name="prioridad" class="datos.Prioridad" column="idPrioridad" not-null="false" fetch="join" lazy="false"/>
+        <many-to-one name="tipo" class="datos.Tipo" column="idTipo" not-null="true" fetch="join" lazy="false"/>
+        <set name="categorias" table="ticket_has_categoria" cascade="all" lazy="false">
             <key column="idTicket"/>
             <many-to-many column="idCategoria" class="datos.Categoria"/>
         </set>

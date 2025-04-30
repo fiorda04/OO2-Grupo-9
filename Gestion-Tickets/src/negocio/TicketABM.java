@@ -21,13 +21,13 @@ public class TicketABM {
 	    }
 
 	    public void modificar(Ticket ticket){
-	    	//Pendiente a validar
+	    	//Pendiente a validar.
 	        ticketDao.actualizar(ticket);
 	    }
 
 	    public void eliminar(long idTicket) throws Exception {
 	        if (ticketDao.traer(idTicket) == null)throw new Exception("No existe el ticket con el ID proporcionado.");
-	        // Aqu� podr�as agregar validaciones si el ticket tiene dependencias (caracteristicas asignadas, etc.)
+	        // Aqui podroas agregar validaciones si el ticket tiene dependencias (caracteristicas asignadas, etc.)
 	        ticketDao.eliminar(ticketDao.traer(idTicket));
 	    }
 	    
