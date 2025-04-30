@@ -8,6 +8,7 @@ import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
 import datos.Ticket;
+import datos.Tipo;
 
 public class TicketDao {
 	private static Session session;
@@ -85,5 +86,18 @@ public class TicketDao {
             session.close();
         }
         return lista;
+    }
+    
+    public List<Ticket> traerTicketPorTipo(Tipo t){
+    	List<Ticket> lista = null;
+    	try {
+    		iniciaOperacion();
+    		Query<Ticket> query = session.createQuery("select t from Ticket t where t.tipo = :tipo", Ticket.class);
+    		query.setParameter("tipo", t);
+    		lista = query.getResultList();
+    	} finally {
+    		session.close();
+    	}
+    	return lista;
     }
 }

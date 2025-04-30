@@ -1,6 +1,5 @@
 package test;
 
-import datos.Usuario;
 import negocio.UsuarioABM;
 
 public class TestBorrarUsuarios {

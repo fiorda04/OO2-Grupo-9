@@ -1,14 +1,11 @@
 package test;
 
-import dao.RolDao;
 import negocio.UsuarioABM;
-import datos.Rol;
 import datos.Usuario;
 
 public class TestModificarUsuario {
     public static void main(String[] args) {
         UsuarioABM usuarioABM = new UsuarioABM();
-        RolDao rolDao = new RolDao();
 
         try {
             // Modificacion del usuario con ID 1
