@@ -1,8 +1,10 @@
 package negocio;
 import java.util.List;
+import java.time.LocalDate;
 
 import dao.TicketDao;
 import datos.Estado;
+import datos.Prioridad;
 import datos.Tipo;
 import datos.Usuario;
 import datos.Ticket;
@@ -42,6 +44,20 @@ public class TicketABM {
 	    public List<Ticket> traer() {
 	        return ticketDao.traer();
 	    }
+	    public List<Ticket> traerPorCliente(Usuario cliente) {
+	    	return ticketDao.traerPorCliente(cliente);
+	    }
 	    
+	    public List<Ticket> traerPorEmpleado(Usuario empleado) {
+	    	return ticketDao.traerPorEmpleado(empleado);
+	    }
+	    
+	    public List<Ticket> traerPorFecha(LocalDate fecha){
+	    	return ticketDao.traerPorFecha(fecha);
+	    }
+	    
+	    public List<Ticket> traerTicketPorPrioridad(Prioridad prioridad){
+	    	return ticketDao.traerTicketPorPrioridad(prioridad);
+	    }
 }
 

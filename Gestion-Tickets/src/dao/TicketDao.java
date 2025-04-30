@@ -1,14 +1,18 @@
 package dao;
 
 import java.util.List;
+import java.time.LocalDate;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
+import datos.Prioridad;
 import datos.Ticket;
 import datos.Tipo;
+import datos.Usuario;
+
 
 public class TicketDao {
 	private static Session session;
@@ -94,6 +98,58 @@ public class TicketDao {
     		iniciaOperacion();
     		Query<Ticket> query = session.createQuery("select t from Ticket t where t.tipo = :tipo", Ticket.class);
     		query.setParameter("tipo", t);
+    		lista = query.getResultList();
+    	} finally {
+    		session.close();
+    	}
+    	return lista;
+    }
+  //trae la lista de tickets por cliente
+    public List<Ticket> traerPorCliente(Usuario cliente) {
+    	List<Ticket> lista = null;
+    	try {
+    		iniciaOperacion();
+    		Query<Ticket> query = session.createQuery("from Ticket t where t.usuario = :usuario order by t.idTicket asc", Ticket.class);
+    		query.setParameter("usuario", cliente);
+    		lista = query.getResultList();
+    	} finally {
+    		session.close();
+    	}
+    	return lista;
+    }
+    //trae la lista de tickets por empleado
+    public List<Ticket> traerPorEmpleado(Usuario empleado){
+    	List<Ticket> lista = null;
+    	try {
+    		iniciaOperacion();
+    		Query<Ticket> query = session.createQuery("from Ticket t where t.usuario = :usuario order by t.idTicket asc", Ticket.class);
+    		query.setParameter("usuario", empleado);
+    		lista = query.getResultList();
+    	} finally {
+    		session.close();
+    	}
+    	return lista;
+    }
+    //trae la lista de tickets por fecha
+    public List<Ticket> traerPorFecha(LocalDate fecha){
+    	List<Ticket> lista = null;
+    	try {
+    		iniciaOperacion();
+    		Query<Ticket> query = session.createQuery("from Ticket t where t.fechaCreacion = :fecha order by t.idTicket asc", Ticket.class);
+    		query.setParameter("fecha", fecha);
+    		lista = query.getResultList();
+    	} finally {
+    		session.close();
+    	}
+    	return lista;
+    }
+    //trae la lista de ticket por prioridad
+    public List<Ticket> traerTicketPorPrioridad(Prioridad prioridad){
+    	List<Ticket> lista = null;
+    	try {
+    		iniciaOperacion();
+    		Query<Ticket> query = session.createQuery("from Ticket t where t.prioridad = :prioridad order by t.idTicket asc", Ticket.class);
+    		query.setParameter("prioridad", prioridad);
     		lista = query.getResultList();
     	} finally {
     		session.close();

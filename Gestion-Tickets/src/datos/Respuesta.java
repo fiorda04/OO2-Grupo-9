@@ -62,6 +62,6 @@ public class Respuesta {
 	@Override
 	public String toString() {
 		return "Respuesta [idRespuesta=" + idRespuesta + ", contenido=" + contenido + ", fechaResp=" + fechaResp
-				+ ", autor=" + autor + ", ticket=" + ticket + "]";
+				+ ", autor=" + autor + ", ticket=" + ticket.getIdTicket() + "]";
 	}
 }

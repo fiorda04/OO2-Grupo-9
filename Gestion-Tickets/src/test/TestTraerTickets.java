@@ -65,8 +65,5 @@ public class TestTraerTickets {
         } else {
             System.out.println("No se encontraron tickets en la base de datos.");
         }
-        
-
 	}
-
 }

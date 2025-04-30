@@ -8,7 +8,7 @@ public class TestBorrarUsuarios {
 
 		try {
 			// Borramos el usuario con ID 1
-			usuarioABM.eliminar(5L);
+			usuarioABM.eliminar(1L);
 			System.out.println("Usuario ID 5 eliminado ");
 		} catch (Exception e) {
 			System.err.println("Error al intentar eliminar usuario con ID 5: " + e.getMessage());

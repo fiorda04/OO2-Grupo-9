@@ -136,10 +136,12 @@ public class Ticket {
         this.respuesta = respuesta;
     }
 
-    @Override
-    public String toString() {
-        return "Ticket [idTicket=" + idTicket + ", titulo=" + titulo + ", descripcion=" + descripcion
-                + ", fechaCreacion=" + fechaCreacion + ", fechaModEst=" + fechaModEst + ", usuario=" + usuario
-                + ", estado=" + estado + ", prioridad=" + prioridad + ", tipo=" + tipo + "]";
-    }
+	@Override
+	public String toString() {
+		return "Ticket [idTicket=" + idTicket + ", titulo=" + titulo + ", descripcion=" + descripcion
+				+ ", fechaCreacion=" + fechaCreacion + ", fechaModEst=" + fechaModEst + ", usuario=" + usuario
+				+ ", estado=" + estado + ", prioridad=" + prioridad + ", tipo=" + tipo + ", categorias=" + categorias
+				+ ", respuesta=" + respuesta + "]";
+	}
+
 }
