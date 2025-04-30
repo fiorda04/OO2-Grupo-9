@@ -12,7 +12,7 @@ public class TestTraerUsuarios {
         if (usuarioPorId != null) {
             System.out.printf("Usuario encontrado por ID 1: %s\n", usuarioPorId);
         } else {
-            System.out.println("No se encontró usuario con ID 1.");
+            System.out.println("No se encontro usuario con ID 1.");
         }
 
         // traer usuario por una ID que no existe
@@ -20,7 +20,7 @@ public class TestTraerUsuarios {
         if (usuarioPorIdNoExiste != null) {
             System.out.printf("Usuario encontrado por ID 9999 %s\n", usuarioPorIdNoExiste);
         } else {
-            System.out.println("No se encontró usuario con ID 9999 (esperado).");
+            System.out.println("No se encontro usuario con ID 9999 .");
         }
 
         // Prueba de traer usuario por DNI existente
@@ -28,15 +28,15 @@ public class TestTraerUsuarios {
         if (usuarioPorDni != null) {
             System.out.printf("Usuario encontrado por DNI 11122333: %s\n", usuarioPorDni);
         } else {
-            System.out.println("No se encontró usuario con DNI 11122333.");
+            System.out.println("No se encontro usuario con DNI 11122333.");
         }
 
         // Prueba de traer usuario por DNI no existente
         Usuario usuarioPorDniNoExiste = usuarioABM.traerPorDni(55555555);
         if (usuarioPorDniNoExiste != null) {
-            System.out.printf("Usuario encontrado por DNI 55555555 (inesperado): %s\n", usuarioPorDniNoExiste);
+            System.out.printf("Usuario encontrado por DNI 55555555 : %s\n", usuarioPorDniNoExiste);
         } else {
-            System.out.println("No se encontró usuario con DNI 55555555 (esperado).");
+            System.out.println("No se encontro usuario con DNI 55555555 .");
         }
 
         // Prueba de traer usuario por nombre de usuario existente
@@ -44,7 +44,7 @@ public class TestTraerUsuarios {
         if (usuarioPorNombre != null) {
             System.out.printf("Usuario encontrado por nombre de usuario 'carlosp': %s\n", usuarioPorNombre);
         } else {
-            System.out.println("No se encontró usuario con nombre de usuario 'carlosp'.");
+            System.out.println("No se encontro usuario con nombre de usuario 'carlosp'.");
         }
 
         // Prueba de traer usuario por nombre de usuario no existente
