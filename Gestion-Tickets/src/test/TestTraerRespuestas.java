@@ -89,6 +89,26 @@ public class TestTraerRespuestas {
             }
             
             
+         // traer respuestas entre Fechas
+            System.out.println("\n--- Prueba de traer respuestas entre Fechas ---");
+            LocalDate fechaDesde = LocalDate.of(2020, 6, 20);
+            LocalDate fechaHasta = LocalDate.of(2020, 6, 21);
+            java.util.List<Respuesta> respuestasEntreFechas = null;
+            try {
+            	respuestasEntreFechas = respuestaABM.traerRespuestasEntreFechas(fechaDesde, fechaHasta);
+                if (respuestasEntreFechas != null && !respuestasEntreFechas.isEmpty()) {
+                    System.out.printf("Listado de respuestas entre fechas desde: %s, y: %s\n", fechaDesde, fechaHasta);
+                    for (Respuesta respuesta : respuestasEntreFechas) {
+                        System.out.println(respuesta);
+                    }
+                } else {
+                    System.out.printf("No se encontraron respuestas entre fechas desde: %s, y: %s\n", fechaDesde, fechaHasta);
+                }
+            } catch (Exception e) {
+                System.err.println("Error al traer respuestas entre fechas: " + e.getMessage());
+            }
+            
+            
         	// traer todas las respuestas
         	System.out.println("\n Traer todas las respuesta");
             java.util.List<Respuesta> todasLasRespuestas = respuestaABM.traer();

@@ -129,6 +129,23 @@ public class RespuestaDao {
     }
     
     
+    //Traer respuestas entre dos fechas
+    public List<Respuesta> traerRespuestasEntreFechas(LocalDate desde, LocalDate hasta) {
+        List<Respuesta> lista = null;
+        try {
+            iniciaOperacion();
+            Query<Respuesta> query = session.createQuery("from Respuesta r where r.fechaResp between :desde and :hasta", Respuesta.class
+            );
+            query.setParameter("desde", desde);
+            query.setParameter("hasta", hasta);
+            lista = query.getResultList();
+        } finally {
+            session.close();
+        }
+        return lista;
+    }
+    
+    
     public List<Respuesta> traerTodos() {
         List<Respuesta> lista = null;
         try {

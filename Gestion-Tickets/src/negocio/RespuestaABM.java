@@ -38,6 +38,14 @@ public class RespuestaABM {
 		}
 	}
     
+    public List<Respuesta> traerRespuestasEntreFechas(LocalDate desde, LocalDate hasta) throws Exception {
+		try {
+			return respuestaDao.traerRespuestasEntreFechas(desde, hasta);
+		} catch (Exception e) {
+			throw new Exception("Error al traer respuestas entre fechas: " + e.getMessage());
+		}
+	}
+    
     public long agregar(String contenido, Usuario autor, Ticket ticket){
         //si es cliente no puede agregar
     	Respuesta respuesta = new Respuesta(contenido, autor, ticket);
