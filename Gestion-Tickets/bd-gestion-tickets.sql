@@ -105,6 +105,7 @@ CREATE TABLE IF NOT EXISTS `bd-gestion-tickets`.`usuario` (
   `nombre_usuario` VARCHAR(45) NOT NULL,
   `contrasenia` VARCHAR(45) NOT NULL,
   `idrol` INT NOT NULL,
+  `activo` BOOLEAN DEFAULT TRUE,
   PRIMARY KEY (`idpersona`),
   UNIQUE INDEX `nombre_usuario` (`nombre_usuario` ASC) VISIBLE,
   INDEX `fk_usuario_rol1_idx` (`idrol` ASC) VISIBLE,
@@ -237,10 +238,21 @@ INSERT INTO `bd-gestion-tickets`.`tipo` (`idtipo`, `nombre_tipo`) VALUES ('3', '
 INSERT INTO `bd-gestion-tickets`.`categoria` (`idcategoria`, `nombre_categoria`) VALUES ('1', 'A1');
 INSERT INTO `bd-gestion-tickets`.`categoria` (`idcategoria`, `nombre_categoria`) VALUES ('2', 'A2');
 INSERT INTO `bd-gestion-tickets`.`categoria` (`idcategoria`, `nombre_categoria`) VALUES ('3', 'A3');
-INSERT INTO `bd-gestion-tickets`.`persona` (`idpersona`, `nombre`, `apellido`, `dni`, `email`, `telefono`) VALUES ('1', 'Pepito', 'Pruebita', '11111111', 'pepoprueba@hotmail.com', '1111111111');
-INSERT INTO `bd-gestion-tickets`.`persona` (`idpersona`, `nombre`, `apellido`, `dni`, `email`, `telefono`) VALUES ('2', 'Admin', 'Administra', '22222222', 'adminemail@hotmail.com', '2222222222');
-INSERT INTO `bd-gestion-tickets`.`usuario` (`idpersona`, `nombre_usuario`, `contrasenia`, `idrol`) VALUES ('1', 'PepeCliente22', 'contraseña', '1');
-INSERT INTO `bd-gestion-tickets`.`usuario` (`idpersona`, `nombre_usuario`, `contrasenia`, `idrol`) VALUES ('2', 'AdminGod', 'administra23', '3');
+INSERT INTO `bd-gestion-tickets`.`persona` (`idpersona`, `nombre`, `apellido`, `dni`, `email`, `telefono`) VALUES
+('1', 'Max', 'Verstappen', '21055879', 'max.verstappen@gmail.com', '1122334455'),
+('2', 'Charles', 'Leclerc', '25123456', 'charles.leclerc@gmail.com', '1133445566'),
+('3', 'Sergio', 'Pérez', '28901234', 'sergio.perez@gmail.com', '1144556677'),
+('4', 'Lando', 'Norris', '23456789', 'lando.norris@gmail.com', '1155667788'),
+('5', 'George', 'Russell', '27890123', 'george.russell@gmail.com', '1166778899'),
+('6', 'Lewis', 'Hamilton', '29012345', 'lewis.hamilton@gmail.com', '1177889900');
+
+INSERT INTO `bd-gestion-tickets`.`usuario` (`idpersona`, `nombre_usuario`, `contrasenia`, `idrol`) VALUES
+('1', 'MaxVerstappen', 'mv33pass', '3'),
+('2', 'CharlesLeclerc', 'cl16pass', '2'),
+('3', 'SergioPerez', 'sp11pass', '2'),
+('4', 'LandoNorris', 'ln4pass', '1'),
+('5', 'GeorgeRussell', 'gr63pass', '1'),
+('6', 'LewisHamilton', 'lh44pass', '1');
 INSERT INTO `bd-gestion-tickets`.`ticket` (`idticket`, `titulo`, `descripcion`, `fecha_creacion`, `fecha_mod_est`, `idpersona`, `idestado`, `idtipo`, `idprioridad`) VALUES ('1', 'TituloTicket', 'Descripcion', '2020-06-20', '2020-06-20', '2', '1', '1', '1');
 INSERT INTO `bd-gestion-tickets`.`ticket_has_categoria` (`idticket`, `idcategoria`) VALUES ('1', '1');
 INSERT INTO `bd-gestion-tickets`.`respuesta` (`idrespuesta`, `contenido`, `fecha_respuesta`, `idticket`, `idautor`) VALUES ('1', 'Respuesta', '2020-06-20', '1', '2');

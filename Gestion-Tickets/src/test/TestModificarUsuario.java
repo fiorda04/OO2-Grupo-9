@@ -4,84 +4,108 @@ import negocio.UsuarioABM;
 import datos.Usuario;
 
 public class TestModificarUsuario {
-    public static void main(String[] args) {
-        UsuarioABM usuarioABM = new UsuarioABM();
+	public static void main(String[] args) {
+		UsuarioABM usuarioABM = new UsuarioABM();
+		long num = 7L;
+		try {
+			Usuario usuarioParaModificar = usuarioABM.traer(num);
+			if (usuarioParaModificar != null) {
+				usuarioParaModificar.setNombre("Checo");
+				usuarioParaModificar.setApellido("Perez");
+				usuarioParaModificar.setDni(44455566);
+				usuarioParaModificar.setEmail("checo.perez@gmail.com");
+				usuarioParaModificar.setTelefono("22-3333-4444");
+				usuarioParaModificar.setNombreUsuario("Checo12");
+				usuarioParaModificar.setContrasenia("otraClave");
+				usuarioABM.modificar(usuarioParaModificar);
+			} else {
+				System.out.println(
+						"No se encontro el usuario con ID " + num + " para la prueba de nombre de usuario duplicado.");
+			}
+		} catch (Exception e) {
+			System.err.println("No se puede modificar: " + e.getMessage());
+		}
+		// Prueba de modificar el nombre de usuario a uno ya existente
+		// ('CharlesLeclerc')
+		System.out.println("\n--- Intento de modificar nombre de usuario a uno existente ('CharlesLeclerc') ---");
+		try {
+			Usuario usuarioParaModificar = usuarioABM.traer(num);
+			if (usuarioParaModificar != null) {
+				usuarioParaModificar.setNombre("OtroNombre");
+				usuarioParaModificar.setApellido("OtroApellido");
+				usuarioParaModificar.setDni(44455566);
+				usuarioParaModificar.setEmail("otro.email@gmail.com");
+				usuarioParaModificar.setTelefono("22-3333-4444");
+				usuarioParaModificar.setNombreUsuario("CharlesLeclerc");
+				usuarioParaModificar.setContrasenia("otraClave");
+				usuarioABM.modificar(usuarioParaModificar);
+			} else {
+				System.out.println(
+						"No se encontro el usuario con ID " + num + " para la prueba de nombre de usuario duplicado.");
+			}
+		} catch (Exception e) {
+			System.err.println("No se puede modificar: " + e.getMessage());
+		}
 
-        try {
-            // Modificacion del usuario con ID 1
-            Usuario usuarioOriginal = usuarioABM.traer(1L);
-            if (usuarioOriginal != null) {
-                System.out.println("\n--- Se modifico el usuario (ID 1) ---");
-                usuarioOriginal.setNombre("ChecoModificado");
-                usuarioOriginal.setApellido("PerezModificado");
-                usuarioOriginal.setDni(33322111); 
-                usuarioOriginal.setEmail("checo.modificado@gmail.com"); 
-                usuarioOriginal.setTelefono("11-5555-4444");
-                usuarioOriginal.setNombreUsuario("ChecoPModificado"); 
-                usuarioOriginal.setContrasenia("nuevaClave123");
-                usuarioABM.modificar(usuarioOriginal);
-                System.out.println("Se modifico Usuario con ID 1");
-            } else {
-                System.out.println("No se encontro el usuario con ID 1 para modificar.");
-            }
+		// Prueba de modificar el DNI a uno ya existente (25123456)
+		System.out.println("\n--- Intento de modificar DNI a uno existente (25123456) ---");
+		try {
+			Usuario usuarioParaModificarDni = usuarioABM.traer(num);
+			if (usuarioParaModificarDni != null) {
+				usuarioParaModificarDni.setNombre("OtroNombreDni");
+				usuarioParaModificarDni.setApellido("OtroApellidoDni");
+				usuarioParaModificarDni.setDni(25123456);
+				usuarioParaModificarDni.setEmail("otro.email.dni@gmail.com");
+				usuarioParaModificarDni.setTelefono("33-4444-5555");
+				usuarioParaModificarDni.setNombreUsuario("OtroUsuarioDni");
+				usuarioParaModificarDni.setContrasenia("otraClaveDni");
+				usuarioABM.modificar(usuarioParaModificarDni);
+			} else {
+				System.out.println("No se encontro el usuario con ID " + num + " para la prueba de DNI duplicado.");
+			}
+		} catch (Exception e) {
+			System.err.println("No se puede modificar " + e.getMessage());
+		}
 
-            // Prueba de modificar el nombre de usuario a uno ya existente ('asdads' del usuario con ID 2)
-            System.out.println("\n--- modifico nombre de usuario a uno existente ('asdads') ---");
-            Usuario usuarioParaModificarNombreDuplicado = usuarioABM.traer(1L);
-            Usuario otroUsuarioConMismoNombre = usuarioABM.traer(2L);
-            if (usuarioParaModificarNombreDuplicado != null && otroUsuarioConMismoNombre != null) {
-                usuarioParaModificarNombreDuplicado.setNombreUsuario(otroUsuarioConMismoNombre.getNombreUsuario());
-                try {
-                    usuarioABM.modificar(usuarioParaModificarNombreDuplicado);
-                } catch (Exception e) {
-                    System.err.println("No se puede modificar: " + e.getMessage());
-                }
-            } else {
-                System.out.println("No se encontraron usuarios con ID 1 o 2 para la prueba de nombre de usuario duplicado.");
-            }
-            
-            // Prueba de modificar el DNI a uno ya existente (1234567 del usuario con ID 2)
-            System.out.println("\n--- Intento de modificar DNI a uno existente (1234567) ---");
-            Usuario usuarioParaModificarDniDuplicado = usuarioABM.traer(1L);
-            Usuario otroUsuarioConMismoDni = usuarioABM.traer(2L);
-            if (usuarioParaModificarDniDuplicado != null && otroUsuarioConMismoDni != null) {
-                usuarioParaModificarDniDuplicado.setDni(otroUsuarioConMismoDni.getDni());
-                try {
-                    usuarioABM.modificar(usuarioParaModificarDniDuplicado);
-                } catch (Exception e) {
-                    System.err.println("No se puede modificar:  " + e.getMessage());
-                }
-            } else {
-                System.out.println("No se encontraron usuarios con ID 1 o 2.");
-            }
+		// Prueba de modificar el mail a uno ya existente (charles.leclerc@gmail.com)
+		System.out.println("\n--- Intento de modificar mail a uno existente (charles.leclerc@gmail.com) ---");
+		try {
+			Usuario usuarioParaModificarDni = usuarioABM.traer(num);
+			if (usuarioParaModificarDni != null) {
+				usuarioParaModificarDni.setNombre("OtroNombreDni");
+				usuarioParaModificarDni.setApellido("OtroApellidoDni");
+				usuarioParaModificarDni.setDni(11111111);
+				usuarioParaModificarDni.setEmail("charles.leclerc@gmail.com");
+				usuarioParaModificarDni.setTelefono("33-4444-5555");
+				usuarioParaModificarDni.setNombreUsuario("OtroUsuarioDni");
+				usuarioParaModificarDni.setContrasenia("otraClaveDni");
+				usuarioABM.modificar(usuarioParaModificarDni);
+			} else {
+				System.out.println("No se encontro el usuario con ID " + num + " para la prueba de DNI duplicado.");
+			}
+		} catch (Exception e) {
+			System.err.println("No se puede modificar " + e.getMessage());
+		}
 
-            // Prueba de modificar el email a uno ya existente ('sss@asaa' del usuario con ID 2)
-            System.out.println("\n--- Intento de modificar email a uno existente ('sss@asaa') ---");
-            Usuario usuarioParaModificarEmailDuplicado = usuarioABM.traer(1L);
-            Usuario otroUsuarioConMismoEmail = usuarioABM.traer(2L);
-            if (usuarioParaModificarEmailDuplicado != null && otroUsuarioConMismoEmail != null) {
-                usuarioParaModificarEmailDuplicado.setEmail(otroUsuarioConMismoEmail.getEmail());
-                try {
-                    usuarioABM.modificar(usuarioParaModificarEmailDuplicado);
-                } catch (Exception e) {
-                    System.err.println("No se puede modificar: " + e.getMessage());
-                }
-            } else {
-                System.out.println("No se encontraron usuarios con ID 1 o 2 para la prueba de email duplicado.");
-            }
-
-            // Prueba de intentar modificar un usuario que no existe (ID 999)
-            System.out.println("\n--- Intento de modificar un usuario inexistente (ID 999) ---");
-            Usuario usuarioInexistente = new Usuario();
-            usuarioInexistente.setNombre("Inexistente");
-            try {
-                usuarioABM.modificar(usuarioInexistente);
-            } catch (Exception e) {
-                System.err.println("No se puede modificar:  " + e.getMessage());
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+		// Prueba de modificar usuario no existente ()
+		System.out.println("\n--- Intento de modificar Usuario no existente ---");
+		long numinexistente = 999L;
+		try {
+			Usuario usuarioParaModificarDni = usuarioABM.traer(numinexistente);
+			if (usuarioParaModificarDni != null) {
+				usuarioParaModificarDni.setNombre("OtroNombreDni");
+				usuarioParaModificarDni.setApellido("OtroApellidoDni");
+				usuarioParaModificarDni.setDni(1111);
+				usuarioParaModificarDni.setEmail("charles.lec@gmail.com");
+				usuarioParaModificarDni.setTelefono("33-4444-5555");
+				usuarioParaModificarDni.setNombreUsuario("OtuarioDni");
+				usuarioParaModificarDni.setContrasenia("otraClaveDni");
+				usuarioABM.modificar(usuarioParaModificarDni);
+			} else {
+				System.out.println("No se encontro el usuario con ID " + numinexistente + " para la prueba de DNI duplicado.");
+			}
+		} catch (Exception e) {
+			System.err.println("No se puede modificar " + e.getMessage());
+		}
+	}
 }

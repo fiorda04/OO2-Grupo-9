@@ -4,6 +4,7 @@ public class Usuario extends Persona {
 	private String nombreUsuario;
 	private String contrasenia;
 	private Rol rol;
+	private boolean activo;
 
 	public Usuario() {
 	}
@@ -14,6 +15,7 @@ public class Usuario extends Persona {
 		this.nombreUsuario = nombreUsuario;
 		this.contrasenia = contrasenia;
 		this.rol = rol;
+		this.setActivo(true);
 	}
 
 	public String getNombreUsuario() {
@@ -38,6 +40,14 @@ public class Usuario extends Persona {
 
 	public void setRol(Rol rol) {
 		this.rol = rol;
+	}
+	
+	public boolean isActivo() {
+		return activo;
+	}
+
+	public void setActivo(boolean activo) {
+		this.activo = activo;
 	}
 
 	@Override
