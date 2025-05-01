@@ -65,7 +65,7 @@ public class RespuestaDao {
         }
     }
 
-    public Respuesta traer(int idRespuesta) {
+    public Respuesta traer(long idRespuesta) {
     	Respuesta objeto = null;
         try {
             iniciaOperacion();
@@ -75,32 +75,35 @@ public class RespuestaDao {
         }
         return objeto;
     }
-
-    //Traer por idTicket y idAutor(Usuario id)
-    //Traer despues las respuestas entre determinadas fechas?
     
-/*
-    public Respuesta traer(String nombreRol) {
-    	Respuesta objeto = null;
-        try {
-            iniciaOperacion();
-            objeto = (Rol) session.createQuery("from Respuesta r where r.nombreRol = :nombreRol", Respuesta.class)
-                    .setParameter("nombreRol", nombreRol)
-                    .uniqueResult();
-        } finally {
-            session.close();
-        }
-        return objeto;
-    }
-*/
-    //Traer Respuestas por fecha de creacion.
-    public List<Respuesta> traerRespuestasPorFechaCreacion(LocalDate fechaCreacion) {
+    //Traer Respuestas por id de Usuario
+    public List<Respuesta> traerPorUsuario(long idUsuario) throws HibernateException {
         List<Respuesta> lista = null;
         try {
             iniciaOperacion();
-            Query<Respuesta> query = session.createQuery("select r from Respuesta r where r.fechaCreacion = :fechaCreacion", Respuesta.class);
+            Query<Respuesta> query = session.createQuery("select r from Respuesta r left join fetch r.autor a where a.idPersona = :idUsuario and a.activo = true", Respuesta.class);
+            query.setParameter("idUsuario", idUsuario);
+            lista = query.getResultList();
+        } catch (HibernateException he) {
+            manejaExcepcion(he);
+            throw he;
+        } finally {
+            session.close();
+        }
+        return lista;
+    }
+
+    //Traer Respuestas por fecha de creacion.
+    public List<Respuesta> traerRespuestasPorFechaCreacion(LocalDate fechaCreacion) throws HibernateException {
+        List<Respuesta> lista = null;
+        try {
+            iniciaOperacion();
+            Query<Respuesta> query = session.createQuery("select r from Respuesta r where r.fechaResp = :fechaCreacion", Respuesta.class);
             query.setParameter("fechaCreacion", fechaCreacion);
             lista = query.getResultList();
+        }catch (HibernateException he) {
+            manejaExcepcion(he);
+            throw he;
         } finally {
             session.close();
         }
@@ -108,14 +111,17 @@ public class RespuestaDao {
     }
     
   //Traer Respuestas por fecha de creacion y autor.
-    public List<Respuesta> traerRespuestasPorFechaCreacionYAutor(LocalDate fechaCreacion, Usuario autor) {
+    public List<Respuesta> traerRespuestasPorFechaCreacionYAutor(LocalDate fechaCreacion, long idUsuario) throws HibernateException {
         List<Respuesta> lista = null;
         try {
             iniciaOperacion();
-            Query<Respuesta> query = session.createQuery("select r from Respuesta r where r.fechaCreacion = :fechaCreacion and r.autor = :autor", Respuesta.class);
+            Query<Respuesta> query = session.createQuery("select r from Respuesta r join fetch r.autor a " + "where r.fechaResp = :fechaCreacion and a.idPersona = :idUsuario and a.activo = true", Respuesta.class);
             query.setParameter("fechaCreacion", fechaCreacion);
-            query.setParameter("autor", autor);
+            query.setParameter("idUsuario", idUsuario);
             lista = query.getResultList();
+        }catch (HibernateException he) {
+            manejaExcepcion(he);
+            throw he;
         } finally {
             session.close();
         }

@@ -1,5 +1,6 @@
 package negocio;
 
+import java.time.LocalDate;
 import java.util.List;
 import dao.RespuestaDao;
 import datos.Respuesta;
@@ -9,10 +10,34 @@ import datos.Usuario;
 public class RespuestaABM {
 	RespuestaDao respuestaDao = new RespuestaDao();
 
-    public Respuesta traer(int idRespuesta) {
+    public Respuesta traer(long idRespuesta) {
         return respuestaDao.traer(idRespuesta);
     }
 
+    public List<Respuesta> traerPorUsuario(long idUsuario) throws Exception {
+		try {
+			return respuestaDao.traerPorUsuario(idUsuario);
+		} catch (Exception e) {
+			throw new Exception("Error al traer respuestas por usuario: " + e.getMessage());
+		}
+	}
+    
+    public List<Respuesta> traerRespuestasPorFechaCreacion(LocalDate fechaCreacion) throws Exception {
+		try {
+			return respuestaDao.traerRespuestasPorFechaCreacion(fechaCreacion);
+		} catch (Exception e) {
+			throw new Exception("Error al traer respuestas por fecha de creacion: " + e.getMessage());
+		}
+	}
+    
+    public List<Respuesta> traerRespuestasPorFechaCreacionYAutor(LocalDate fechaCreacion, long idUsuario) throws Exception {
+		try {
+			return respuestaDao.traerRespuestasPorFechaCreacionYAutor(fechaCreacion, idUsuario);
+		} catch (Exception e) {
+			throw new Exception("Error al traer respuestas por fecha de creacion y autor: " + e.getMessage());
+		}
+	}
+    
     public long agregar(String contenido, Usuario autor, Ticket ticket){
         //si es cliente no puede agregar
     	Respuesta respuesta = new Respuesta(contenido, autor, ticket);
