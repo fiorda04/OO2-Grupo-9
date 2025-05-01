@@ -5,6 +5,9 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import datos.Respuesta;
+import datos.Usuario;
+
+import java.time.LocalDate;
 import java.util.List;
 
 public class RespuestaDao {
@@ -90,6 +93,36 @@ public class RespuestaDao {
         return objeto;
     }
 */
+    //Traer Respuestas por fecha de creacion.
+    public List<Respuesta> traerRespuestasPorFechaCreacion(LocalDate fechaCreacion) {
+        List<Respuesta> lista = null;
+        try {
+            iniciaOperacion();
+            Query<Respuesta> query = session.createQuery("select r from Respuesta r where r.fechaCreacion = :fechaCreacion", Respuesta.class);
+            query.setParameter("fechaCreacion", fechaCreacion);
+            lista = query.getResultList();
+        } finally {
+            session.close();
+        }
+        return lista;
+    }
+    
+  //Traer Respuestas por fecha de creacion y autor.
+    public List<Respuesta> traerRespuestasPorFechaCreacionYAutor(LocalDate fechaCreacion, Usuario autor) {
+        List<Respuesta> lista = null;
+        try {
+            iniciaOperacion();
+            Query<Respuesta> query = session.createQuery("select r from Respuesta r where r.fechaCreacion = :fechaCreacion and r.autor = :autor", Respuesta.class);
+            query.setParameter("fechaCreacion", fechaCreacion);
+            query.setParameter("autor", autor);
+            lista = query.getResultList();
+        } finally {
+            session.close();
+        }
+        return lista;
+    }
+    
+    
     public List<Respuesta> traerTodos() {
         List<Respuesta> lista = null;
         try {
