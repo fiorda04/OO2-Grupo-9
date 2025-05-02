@@ -20,16 +20,14 @@ public class TestAgregarRespuesta {
         	Ticket ticket = ticketDao.traer(1L);
         	
         	if (usuario != null) {
-        		System.out.println("Usuario: " + usuario);
-        		System.out.println("Ticket ID: " + ticket.getIdTicket());
         		//Solo el empleado puede dar una respuesta
         		long ultimoIdRespuesta = respuestaABM.agregar("Contenido de la respuesta", usuario, ticket);
-        		System.out.printf("Id usuario agregado la respusta: %d, del usuario: %s, del ticket: %d\n", ultimoIdRespuesta, usuario.getNombreUsuario(), ticket.getIdTicket());
+        		System.out.printf("Se ha agregado la respusta: %d, por el usuario: %s, del ticket: %d\n", ultimoIdRespuesta, usuario.getNombreUsuario(), ticket.getIdTicket());
         	} else {
                 System.out.printf("No se encontro el usuario o ticket");
             }
         } catch (Exception e) {
-            e.printStackTrace();
+        	System.err.println("No se pudo agregar la respuesta porque " + e.getMessage());
         }
     }
 }

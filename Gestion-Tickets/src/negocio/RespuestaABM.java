@@ -46,17 +46,16 @@ public class RespuestaABM {
 		}
 	}
     
-    public long agregar(String contenido, Usuario autor, Ticket ticket){
-        //si es cliente no puede agregar
+    public long agregar(String contenido, Usuario autor, Ticket ticket) throws Exception{
     	Respuesta respuesta = new Respuesta(contenido, autor, ticket);
         return respuestaDao.agregar(respuesta);
     }
 
-    public void modificar(Respuesta respuesta){
+    public void modificar(Respuesta respuesta) throws Exception{
         respuestaDao.actualizar(respuesta);
     }
 
-    public void eliminar(int idRespuesta) throws Exception {
+    public void eliminar(long idRespuesta) throws Exception {
     	Respuesta respuesta = respuestaDao.traer(idRespuesta);
         respuestaDao.eliminar(respuesta);
     }

@@ -4,7 +4,10 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
+
+import datos.Estado;
 import datos.Respuesta;
+import datos.Ticket;
 import datos.Usuario;
 
 import java.time.LocalDate;
@@ -24,10 +27,25 @@ public class RespuestaDao {
         throw new HibernateException("ERROR en la capa de acceso a datos", he);
     }
 
-    public int agregar(Respuesta objeto) {
+    public int agregar(Respuesta objeto) throws Exception {
         int id = 0;
         try {
             iniciaOperacion();
+            
+            //Actualiza el ticket (fechaModEst y estado)
+            Ticket ticket = objeto.getTicket();
+            if (ticket.getEstado().getIdEstado() != 1L){
+            	throw new Exception("El Id del Estado del Ticket es diferente a 1 (Cerrado)");
+            }
+            if (objeto.getAutor().getRol().getIdRol() == 1L) {
+            	throw new Exception("El autor tiene Rol de Cliente el cual no tiene acceso a crear Respuestas");
+            }
+            ticket.setFechaModEst(LocalDate.now()); // o LocalDate.now()
+        	Estado nuevoEstado = session.get(Estado.class, 2L);
+        	objeto.getTicket().setEstado(nuevoEstado);
+        	session.update(ticket);
+            
+        	
             Number generatedId = (Number) session.save(objeto);
             if (generatedId != null) {
                 id = generatedId.intValue();
@@ -41,9 +59,18 @@ public class RespuestaDao {
         return id;
     }
 
-    public void actualizar(Respuesta objeto) {
+    public void actualizar(Respuesta objeto) throws Exception {
         try {
             iniciaOperacion();
+            
+            if (objeto.getAutor().getRol().getIdRol() == 1L) {
+            	throw new Exception("El autor tiene Rol de Cliente el cual no tiene acceso a modificar Respuestas");
+            }
+            
+            Ticket ticket = objeto.getTicket();
+            ticket.setFechaModEst(LocalDate.now());
+            session.update(ticket);
+            
             session.update(objeto);
             tx.commit();
         } catch (HibernateException he) {
@@ -81,7 +108,7 @@ public class RespuestaDao {
         List<Respuesta> lista = null;
         try {
             iniciaOperacion();
-            Query<Respuesta> query = session.createQuery("select r from Respuesta r left join fetch r.autor a where a.idPersona = :idUsuario and a.activo = true", Respuesta.class);
+            Query<Respuesta> query = session.createQuery("select r from Respuesta r left join fetch r.autor a where a.idPersona = :idUsuario", Respuesta.class);
             query.setParameter("idUsuario", idUsuario);
             lista = query.getResultList();
         } catch (HibernateException he) {
@@ -115,7 +142,7 @@ public class RespuestaDao {
         List<Respuesta> lista = null;
         try {
             iniciaOperacion();
-            Query<Respuesta> query = session.createQuery("select r from Respuesta r join fetch r.autor a " + "where r.fechaResp = :fechaCreacion and a.idPersona = :idUsuario and a.activo = true", Respuesta.class);
+            Query<Respuesta> query = session.createQuery("select r from Respuesta r join fetch r.autor a " + "where r.fechaResp = :fechaCreacion and a.idPersona = :idUsuario", Respuesta.class);
             query.setParameter("fechaCreacion", fechaCreacion);
             query.setParameter("idUsuario", idUsuario);
             lista = query.getResultList();
