@@ -101,6 +101,20 @@ public class UsuarioDao {
         }
         return objeto;
     }
+    
+    public Usuario traerActivoEInactivo(long idUsuario) throws HibernateException {
+        Usuario objeto = null;
+        try {
+            iniciaOperacion();
+            objeto = (Usuario) session.get(Usuario.class, idUsuario);
+        } catch (HibernateException he) {
+            manejaExcepcion(he);
+            throw he;
+        } finally {
+            session.close();
+        }
+        return objeto;
+    }
 
     public Usuario traer(String nombreUsuario) throws HibernateException {
         Usuario usuario = null;

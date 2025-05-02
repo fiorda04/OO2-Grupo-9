@@ -9,27 +9,26 @@ import negocio.UsuarioABM;
 
 public class TestTraerTicketPorUsuarioEmpleado {
 
-    public static void main(String[] args) {
-
-        TicketABM abmTicket = new TicketABM();
-        UsuarioABM abmUsuario = new UsuarioABM();
-
-        Usuario empleado = null; 
-        try {
-            empleado = abmUsuario.traer(2L);
-
-            if (empleado != null) {
-                List<Ticket> ticketsEmpleado = abmTicket.traerPorEmpleado(empleado);
-
-                System.out.println("Tickets del empleado:");
-                for (Ticket t : ticketsEmpleado) {
-                    System.out.println(t);
-                }
-            } else {
-                System.out.println("No se encontro el empleado con el ID 2.");
-            }
-        } catch (Exception e) {
-            System.err.println("Error al traer el empleado con ID 2: " + e.getMessage());
-        }
-    }
+	public static void main(String[] args) throws Exception  {
+		
+		TicketABM abmTicket = new TicketABM();
+		UsuarioABM abmUsuario = new UsuarioABM();
+		
+		Usuario empleado = abmUsuario.traerActivoEInactivo(1L);
+		
+		if (empleado != null) {
+			try {
+				List <Ticket> ticketsEmpleado = abmTicket.traerPorEmpleado(empleado);
+			
+				System.out.println("---Tickets del empleado---");
+				for (Ticket t : ticketsEmpleado) {
+					System.out.println(t);
+			}
+		} catch (Exception e) {
+			System.out.println("Error: " + e.getMessage());
+		}
+	} else {
+			System.out.println("No se encontro el empleado con el ID proporcionado.");
+		}
+	}
 }

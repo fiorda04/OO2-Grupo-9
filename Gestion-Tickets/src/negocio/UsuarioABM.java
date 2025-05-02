@@ -21,6 +21,14 @@ public class UsuarioABM {
 		}
 	}
 
+	public Usuario traerActivoEInactivo(long idUsuario) throws Exception {
+		try {
+			return usuarioDao.traerActivoEInactivo(idUsuario);
+		} catch (Exception e) {
+			throw new Exception("Error al traer usuario por ID: " + e.getMessage());
+		}
+	}
+
 	public Usuario traer(String nombreUsuario) throws Exception {
 		try {
 			return usuarioDao.traer(nombreUsuario);

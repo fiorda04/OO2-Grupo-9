@@ -11,12 +11,12 @@ public class TestTraerTicketPorFecha {
 		
 		TicketABM abmTicket = new TicketABM();
 		
-		LocalDate fecha = LocalDate.of(2025, 4, 30);
+		LocalDate fecha = LocalDate.of(2020, 06, 20);
 
 		List<Ticket> ticketsPorFecha = abmTicket.traerPorFecha(fecha);
 		
 		if (ticketsPorFecha != null && !ticketsPorFecha.isEmpty()) {
-			System.out.println("Tickets encontrados para la fecha" + fecha + ":");
+			System.out.println("Tickets encontrados para la fecha " + fecha + ":");
 			for (Ticket t : ticketsPorFecha) {
 				System.out.println(t);
 			}
