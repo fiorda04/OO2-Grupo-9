@@ -14,8 +14,8 @@ public class TraerTicketPorEstado {
 		
 		EstadoDao estadoDao = new EstadoDao();
 		
-		Estado abierto = estadoDao.traer(2L); //Estado abierto
-		Estado cerrado = estadoDao.traer(1L); //Estado cerrado
+		Estado abierto = estadoDao.traer(1L); //Estado abierto
+		Estado cerrado = estadoDao.traer(2L); //Estado cerrado
 		
 		System.out.println("---Tickets con estado ABIERTO---");
 		List<Ticket> ticketAbierto = abmTicket.traerTicketPorEstado(abierto);

@@ -105,7 +105,7 @@ public class TicketDao {
 		return lista;
 	}
 
-	// trae la lista de tickets por cliente
+	//trae la lista de tickets por cliente
 	public List<Ticket> traerPorCliente(Usuario cliente) {
     	List<Ticket> lista = null;
     	try {
@@ -120,18 +120,18 @@ public class TicketDao {
 	}
 	
 	//trae la lista de tickets por empleado
-    public List<Ticket> traerPorEmpleado(Usuario empleado){
-    	List<Ticket> lista = null;
-    	try {
-    		iniciaOperacion();
-    		Query<Ticket> query = session.createQuery("from Ticket t where t.usuario = :usuario order by t.idTicket asc", Ticket.class);
-    		query.setParameter("usuario", empleado);
-    		lista = query.getResultList();
-    	} finally {
-    		session.close();
-    	}
-    	return lista;
-    }
+	 public List<Ticket> traerPorEmpleado(Usuario empleado){
+	        List<Ticket> lista = null;
+	        try {
+	            iniciaOperacion();
+	            Query<Ticket> query = session.createQuery("from Ticket t where t.respuesta.autor = :empleado order by t.idTicket asc", Ticket.class);
+	            query.setParameter("empleado", empleado);
+	            lista = query.getResultList();
+	        } finally {
+	            session.close();
+	        }
+	        return lista;
+	    }
 
   //trae la lista de tickets por fecha
     public List<Ticket> traerPorFecha(LocalDate fecha){

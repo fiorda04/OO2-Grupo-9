@@ -14,7 +14,7 @@ public class TestTraerTicketPorUsuarioCliente {
 		TicketABM abmTicket = new TicketABM();
 		UsuarioABM abmUsuario = new UsuarioABM();
 		
-		Usuario cliente = abmUsuario.traerActivoEInactivo(1L);
+		Usuario cliente = abmUsuario.traerActivoEInactivo(6L);
 		
 		if (cliente != null ) {
 			try {

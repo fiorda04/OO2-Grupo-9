@@ -14,13 +14,13 @@ public class TestTraerTicketPorUsuarioEmpleado {
 		TicketABM abmTicket = new TicketABM();
 		UsuarioABM abmUsuario = new UsuarioABM();
 		
-		Usuario empleado = abmUsuario.traerActivoEInactivo(1L);
+		Usuario empleado = abmUsuario.traerActivoEInactivo(2L);
 		
 		if (empleado != null) {
 			try {
 				List <Ticket> ticketsEmpleado = abmTicket.traerPorEmpleado(empleado);
 			
-				System.out.println("---Tickets del empleado---");
+				System.out.println("---Tickets respondidos del empleado---");
 				for (Ticket t : ticketsEmpleado) {
 					System.out.println(t);
 			}
