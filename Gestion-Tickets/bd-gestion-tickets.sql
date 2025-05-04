@@ -282,3 +282,9 @@ INSERT INTO `bd-gestion-tickets`.`ticket` (`idticket`, `titulo`, `descripcion`, 
 INSERT INTO `bd-gestion-tickets`.`ticket_has_categoria` (`idticket`, `idcategoria`) VALUES ('1', '1');
 INSERT INTO `bd-gestion-tickets`.`respuesta` (`idrespuesta`, `contenido`, `fecha_respuesta`, `idticket`, `idautor`) VALUES ('1', 'Respuesta', '2020-06-20', '1', '2');
 
+INSERT INTO `bd-gestion-tickets`.`respuesta` (`idrespuesta`, `contenido`, `fecha_respuesta`, `idticket`, `idautor`) VALUES ('2', 'Respuesta', '2025-4-20', '2', '1');
+INSERT INTO `bd-gestion-tickets`.`respuesta` (`idrespuesta`, `contenido`, `fecha_respuesta`, `idticket`, `idautor`) VALUES ('3', 'Respuesta', '2025-5-3', '4', '2');
+INSERT INTO `bd-gestion-tickets`.`respuesta` (`idrespuesta`, `contenido`, `fecha_respuesta`, `idticket`, `idautor`) VALUES ('4', 'Respuesta', '2025-5-3', '6', '3');
+INSERT INTO `bd-gestion-tickets`.`respuesta` (`idrespuesta`, `contenido`, `fecha_respuesta`, `idticket`, `idautor`) VALUES ('5', 'Respuesta', '2025-5-4', '8', '3');
+INSERT INTO `bd-gestion-tickets`.`respuesta` (`idrespuesta`, `contenido`, `fecha_respuesta`, `idticket`, `idautor`) VALUES ('6', 'Respuesta', '2025-5-4', '10', '1');
+INSERT INTO `bd-gestion-tickets`.`respuesta` (`idrespuesta`, `contenido`, `fecha_respuesta`, `idticket`, `idautor`) VALUES ('7', 'Respuesta', '2025-5-4', '12', '1');
