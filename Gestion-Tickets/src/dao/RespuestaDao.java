@@ -35,7 +35,7 @@ public class RespuestaDao {
             //Actualiza el ticket (fechaModEst y estado)
             Ticket ticket = objeto.getTicket();
             if (ticket.getEstado().getIdEstado() != 1L){
-            	throw new Exception("El Id del Estado del Ticket es diferente a 1 (Cerrado)");
+            	throw new Exception("El Id del Estado del Ticket es diferente a 1 (Abierto)");
             }
             if (objeto.getAutor().getRol().getIdRol() == 1L) {
             	throw new Exception("El autor tiene Rol de Cliente el cual no tiene acceso a crear Respuestas");
@@ -108,7 +108,7 @@ public class RespuestaDao {
         List<Respuesta> lista = null;
         try {
             iniciaOperacion();
-            Query<Respuesta> query = session.createQuery("select r from Respuesta r left join fetch r.autor a where a.idPersona = :idUsuario", Respuesta.class);
+            Query<Respuesta> query = session.createQuery("select r from Respuesta r join fetch r.autor a join fetch a.rol where a.idPersona = :idUsuario and a.activo = true", Respuesta.class);
             query.setParameter("idUsuario", idUsuario);
             lista = query.getResultList();
         } catch (HibernateException he) {
@@ -142,7 +142,7 @@ public class RespuestaDao {
         List<Respuesta> lista = null;
         try {
             iniciaOperacion();
-            Query<Respuesta> query = session.createQuery("select r from Respuesta r join fetch r.autor a " + "where r.fechaResp = :fechaCreacion and a.idPersona = :idUsuario", Respuesta.class);
+            Query<Respuesta> query = session.createQuery("select r from Respuesta r join fetch r.autor a join fetch a.rol join fetch r.ticket t where r.fechaResp = :fechaCreacion and a.idPersona = :idUsuario", Respuesta.class);
             query.setParameter("fechaCreacion", fechaCreacion);
             query.setParameter("idUsuario", idUsuario);
             lista = query.getResultList();
