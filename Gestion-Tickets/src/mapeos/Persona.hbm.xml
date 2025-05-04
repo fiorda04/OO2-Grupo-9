@@ -15,7 +15,7 @@
             <key column="idpersona"/>
             <property name="nombreUsuario" column="nombre_usuario" type="string" unique="true" not-null="true"/>
             <property name="contrasenia" column="contrasenia" type="string" not-null="true"/>
-            <many-to-one name="rol" class="datos.Rol" column="idrol" not-null="true" fetch="join"/>
+            <many-to-one name="rol" class="datos.Rol" column="idrol" not-null="true" fetch="join" lazy="false"/>
             <property name="activo" column="activo" type="boolean" not-null="true" />
         </joined-subclass>
     </class>

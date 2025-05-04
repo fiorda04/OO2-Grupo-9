@@ -26,20 +26,19 @@ public class TicketABM {
 	    public long agregar(String titulo, String descripcion, Usuario usuarioCliente, Tipo tipo, Set<Categoria> categorias) throws Exception {
 	    	Rol rolCliente = rolDao.traer(1L);
 	    	Estado estadoAbierto = estadoDao.traer(1L);
-	    	//Valida que sea cliente.
-	    	if(usuarioCliente.getRol().equals(rolCliente))throw new Exception("El usuario que crea el ticket debe ser cliente.");
+	    	//Valida que el que crea el ticket sea cliente.
+	    	if(usuarioCliente.getRol().getIdRol()!=rolCliente.getIdRol())throw new Exception("El usuario que crea el ticket debe ser cliente.");
 	        Ticket ticket = new Ticket(titulo, descripcion, usuarioCliente, estadoAbierto, tipo, categorias);
 	        return ticketDao.agregar(ticket);
 	    }
 
 	    public void modificar(Ticket ticket){
-	    	//Pendiente a validar.
 	        ticketDao.actualizar(ticket);
 	    }
 
 	    public void eliminar(long idTicket) throws Exception {
+	    	//Valida si el ticket existe.
 	        if (ticketDao.traer(idTicket) == null)throw new Exception("No existe el ticket con el ID proporcionado.");
-	        // Aqui podroas agregar validaciones si el ticket tiene dependencias (caracteristicas asignadas, etc.)
 	        ticketDao.eliminar(ticketDao.traer(idTicket));
 	    }
 	    

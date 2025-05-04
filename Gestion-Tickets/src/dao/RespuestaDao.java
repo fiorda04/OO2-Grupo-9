@@ -40,7 +40,7 @@ public class RespuestaDao {
             	throw new Exception("El autor tiene Rol de Cliente el cual no tiene acceso a crear Respuestas");
             }
             ticket.setFechaModEst(LocalDate.now()); // o LocalDate.now()
-        	Estado nuevoEstado = session.get(Estado.class, 2L);
+        	Estado nuevoEstado = (Estado) session.get(Estado.class, 2L);
         	objeto.getTicket().setEstado(nuevoEstado);
         	session.update(ticket);
             
