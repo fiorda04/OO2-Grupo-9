@@ -255,7 +255,7 @@ INSERT INTO `bd-gestion-tickets`.`usuario` (`idpersona`, `nombre_usuario`, `cont
 ('6', 'LewisHamilton', 'lh44pass', '1');
 -- Ingreso de tickets: 4 tickets para cada persona, 12 de cada estado, 8 de cada tipo, 8 de cada prioridad, fechas desde 2023-01-01 hasta 2023-01-24 inclusive
 INSERT INTO `bd-gestion-tickets`.`ticket` (`idticket`, `titulo`, `descripcion`, `fecha_creacion`, `fecha_mod_est`, `idpersona`, `idestado`, `idtipo`, `idprioridad`) VALUES
-(1, 'Ticket 1', 'Descripción del ticket 1', '2023-01-01', '2023-01-01', 4, 1, 1, 1),
+(1, 'Ticket 1', 'Descripción del ticket 1', '2023-01-01', '2023-01-01', 4, 2, 1, 1),
 (2, 'Ticket 2', 'Descripción del ticket 2', '2023-01-02', '2023-01-02', 5, 2, 2, 2),
 (3, 'Ticket 3', 'Descripción del ticket 3', '2023-01-03', '2023-01-03', 6, 1, 3, 3),
 (4, 'Ticket 4', 'Descripción del ticket 4', '2023-01-04', '2023-01-04', 4, 2, 1, 2),
@@ -268,17 +268,17 @@ INSERT INTO `bd-gestion-tickets`.`ticket` (`idticket`, `titulo`, `descripcion`, 
 (11, 'Ticket 11', 'Descripción del ticket 11', '2023-01-11', '2023-01-11', 5, 1, 2, 2),
 (12, 'Ticket 12', 'Descripción del ticket 12', '2023-01-12', '2023-01-12', 6, 2, 3, 1),
 (13, 'Ticket 13', 'Descripción del ticket 13', '2023-01-13', '2023-01-13', 4, 1, 1, 2),
-(14, 'Ticket 14', 'Descripción del ticket 14', '2023-01-14', '2023-01-14', 4, 2, 2, 3),
+(14, 'Ticket 14', 'Descripción del ticket 14', '2023-01-14', '2023-01-14', 4, 1, 2, 3),
 (15, 'Ticket 15', 'Descripción del ticket 15', '2023-01-15', '2023-01-15', 5, 1, 3, 1),
-(16, 'Ticket 16', 'Descripción del ticket 16', '2023-01-16', '2023-01-16', 5, 2, 1, 1),
+(16, 'Ticket 16', 'Descripción del ticket 16', '2023-01-16', '2023-01-16', 5, 1, 1, 1),
 (17, 'Ticket 17', 'Descripción del ticket 17', '2023-01-17', '2023-01-17', 5, 1, 2, 2),
-(18, 'Ticket 18', 'Descripción del ticket 18', '2023-01-18', '2023-01-18', 6, 2, 3, 3),
+(18, 'Ticket 18', 'Descripción del ticket 18', '2023-01-18', '2023-01-18', 6, 1, 3, 3),
 (19, 'Ticket 19', 'Descripción del ticket 19', '2023-01-19', '2023-01-19', 6, 1, 1, 2),
-(20, 'Ticket 20', 'Descripción del ticket 20', '2023-01-20', '2023-01-20', 6, 2, 2, 1),
+(20, 'Ticket 20', 'Descripción del ticket 20', '2023-01-20', '2023-01-20', 6, 1, 2, 1),
 (21, 'Ticket 21', 'Descripción del ticket 21', '2023-01-21', '2023-01-21', 5, 1, 3, 3),
-(22, 'Ticket 22', 'Descripción del ticket 22', '2023-01-22', '2023-01-22', 4, 2, 1, 3),
+(22, 'Ticket 22', 'Descripción del ticket 22', '2023-01-22', '2023-01-22', 4, 1, 1, 3),
 (23, 'Ticket 23', 'Descripción del ticket 23', '2023-01-23', '2023-01-23', 5, 1, 2, 2),
-(24, 'Ticket 24', 'Descripción del ticket 24', '2023-01-24', '2023-01-24', 6, 2, 3, 1);
+(24, 'Ticket 24', 'Descripción del ticket 24', '2023-01-24', '2023-01-24', 6, 1, 3, 1);
 INSERT INTO `bd-gestion-tickets`.`ticket_has_categoria` (`idticket`, `idcategoria`) VALUES ('1', '1');
 INSERT INTO `bd-gestion-tickets`.`respuesta` (`idrespuesta`, `contenido`, `fecha_respuesta`, `idticket`, `idautor`) VALUES ('1', 'Respuesta', '2020-06-20', '1', '2');
 
