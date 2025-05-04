@@ -11,7 +11,7 @@ public class TestAgregarUsuario {
 
 		// Hacemos una prueba cargando un usuario que se pueda cargar en la BBDD.
 		try {
-			Rol rolAdmin = rolDao.traer(3L);
+			Rol rolAdmin = rolDao.traer(2L);
 			if (rolAdmin != null) {
 				long usuarioNuevo = usuarioABM.agregar("Checo", "Perez", 11122333, "checo.perez@gmail.com",
 						"11-1111-2222", "ChecoP", "Elcheco", rolAdmin);
