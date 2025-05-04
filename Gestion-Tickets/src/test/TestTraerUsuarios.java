@@ -146,7 +146,7 @@ public class TestTraerUsuarios {
         }
 
         // Prueba de traer usuario por Email no existente
-        System.out.println("\n--- Prueba de traer usuario por Email no existente ('inexistente@example.com') ---");
+        System.out.println("\n--- Prueba de traer usuario por Email no existente ---");
         String emailNoExistente = "inexistente@example.com";
         Usuario usuarioPorEmailNoExiste = null;
         try {
