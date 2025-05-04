@@ -224,8 +224,8 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- Se setean los valores bases
 -- -----------------------------------------------------
 
-INSERT INTO `bd-gestion-tickets`.`estado` (`idestado`, `nombre_estado`) VALUES ('1', 'Cerrado');
-INSERT INTO `bd-gestion-tickets`.`estado` (`idestado`, `nombre_estado`) VALUES ('2', 'Abierto');
+INSERT INTO `bd-gestion-tickets`.`estado` (`idestado`, `nombre_estado`) VALUES ('1', 'Abierto');
+INSERT INTO `bd-gestion-tickets`.`estado` (`idestado`, `nombre_estado`) VALUES ('2', 'Cerrado');
 INSERT INTO `bd-gestion-tickets`.`prioridad` (`idprioridad`, `nombre_prioridad`) VALUES ('1', 'Alta');
 INSERT INTO `bd-gestion-tickets`.`prioridad` (`idprioridad`, `nombre_prioridad`) VALUES ('2', 'Media');
 INSERT INTO `bd-gestion-tickets`.`prioridad` (`idprioridad`, `nombre_prioridad`) VALUES ('3', 'Baja');
@@ -255,27 +255,27 @@ INSERT INTO `bd-gestion-tickets`.`usuario` (`idpersona`, `nombre_usuario`, `cont
 ('6', 'LewisHamilton', 'lh44pass', '1');
 -- Ingreso de tickets: 4 tickets para cada persona, 12 de cada estado, 8 de cada tipo, 8 de cada prioridad, fechas desde 2023-01-01 hasta 2023-01-24 inclusive
 INSERT INTO `bd-gestion-tickets`.`ticket` (`idticket`, `titulo`, `descripcion`, `fecha_creacion`, `fecha_mod_est`, `idpersona`, `idestado`, `idtipo`, `idprioridad`) VALUES
-(1, 'Ticket 1', 'Descripción del ticket 1', '2023-01-01', '2023-01-01', 1, 1, 1, 1),
-(2, 'Ticket 2', 'Descripción del ticket 2', '2023-01-02', '2023-01-02', 2, 2, 2, 2),
-(3, 'Ticket 3', 'Descripción del ticket 3', '2023-01-03', '2023-01-03', 3, 1, 3, 3),
+(1, 'Ticket 1', 'Descripción del ticket 1', '2023-01-01', '2023-01-01', 4, 1, 1, 1),
+(2, 'Ticket 2', 'Descripción del ticket 2', '2023-01-02', '2023-01-02', 5, 2, 2, 2),
+(3, 'Ticket 3', 'Descripción del ticket 3', '2023-01-03', '2023-01-03', 6, 1, 3, 3),
 (4, 'Ticket 4', 'Descripción del ticket 4', '2023-01-04', '2023-01-04', 4, 2, 1, 2),
 (5, 'Ticket 5', 'Descripción del ticket 5', '2023-01-05', '2023-01-05', 5, 1, 2, 1),
 (6, 'Ticket 6', 'Descripción del ticket 6', '2023-01-06', '2023-01-06', 6, 2, 3, 2),
-(7, 'Ticket 7', 'Descripción del ticket 7', '2023-01-07', '2023-01-07', 1, 1, 1, 3),
-(8, 'Ticket 8', 'Descripción del ticket 8', '2023-01-08', '2023-01-08', 2, 2, 2, 1),
-(9, 'Ticket 9', 'Descripción del ticket 9', '2023-01-09', '2023-01-09', 3, 1, 3, 2),
+(7, 'Ticket 7', 'Descripción del ticket 7', '2023-01-07', '2023-01-07', 6, 1, 1, 3),
+(8, 'Ticket 8', 'Descripción del ticket 8', '2023-01-08', '2023-01-08', 5, 2, 2, 1),
+(9, 'Ticket 9', 'Descripción del ticket 9', '2023-01-09', '2023-01-09', 5, 1, 3, 2),
 (10, 'Ticket 10', 'Descripción del ticket 10', '2023-01-10', '2023-01-10', 4, 2, 1, 3),
 (11, 'Ticket 11', 'Descripción del ticket 11', '2023-01-11', '2023-01-11', 5, 1, 2, 2),
 (12, 'Ticket 12', 'Descripción del ticket 12', '2023-01-12', '2023-01-12', 6, 2, 3, 1),
-(13, 'Ticket 13', 'Descripción del ticket 13', '2023-01-13', '2023-01-13', 1, 1, 1, 2),
-(14, 'Ticket 14', 'Descripción del ticket 14', '2023-01-14', '2023-01-14', 2, 2, 2, 3),
-(15, 'Ticket 15', 'Descripción del ticket 15', '2023-01-15', '2023-01-15', 3, 1, 3, 1),
-(16, 'Ticket 16', 'Descripción del ticket 16', '2023-01-16', '2023-01-16', 4, 2, 1, 1),
+(13, 'Ticket 13', 'Descripción del ticket 13', '2023-01-13', '2023-01-13', 4, 1, 1, 2),
+(14, 'Ticket 14', 'Descripción del ticket 14', '2023-01-14', '2023-01-14', 4, 2, 2, 3),
+(15, 'Ticket 15', 'Descripción del ticket 15', '2023-01-15', '2023-01-15', 5, 1, 3, 1),
+(16, 'Ticket 16', 'Descripción del ticket 16', '2023-01-16', '2023-01-16', 5, 2, 1, 1),
 (17, 'Ticket 17', 'Descripción del ticket 17', '2023-01-17', '2023-01-17', 5, 1, 2, 2),
 (18, 'Ticket 18', 'Descripción del ticket 18', '2023-01-18', '2023-01-18', 6, 2, 3, 3),
-(19, 'Ticket 19', 'Descripción del ticket 19', '2023-01-19', '2023-01-19', 1, 1, 1, 2),
-(20, 'Ticket 20', 'Descripción del ticket 20', '2023-01-20', '2023-01-20', 2, 2, 2, 1),
-(21, 'Ticket 21', 'Descripción del ticket 21', '2023-01-21', '2023-01-21', 3, 1, 3, 3),
+(19, 'Ticket 19', 'Descripción del ticket 19', '2023-01-19', '2023-01-19', 6, 1, 1, 2),
+(20, 'Ticket 20', 'Descripción del ticket 20', '2023-01-20', '2023-01-20', 6, 2, 2, 1),
+(21, 'Ticket 21', 'Descripción del ticket 21', '2023-01-21', '2023-01-21', 5, 1, 3, 3),
 (22, 'Ticket 22', 'Descripción del ticket 22', '2023-01-22', '2023-01-22', 4, 2, 1, 3),
 (23, 'Ticket 23', 'Descripción del ticket 23', '2023-01-23', '2023-01-23', 5, 1, 2, 2),
 (24, 'Ticket 24', 'Descripción del ticket 24', '2023-01-24', '2023-01-24', 6, 2, 3, 1);
