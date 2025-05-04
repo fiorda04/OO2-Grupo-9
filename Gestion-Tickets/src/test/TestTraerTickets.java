@@ -14,9 +14,9 @@ public class TestTraerTickets {
 		TipoDao tipoDao = new TipoDao();
 
         // traer ticket por ID
-        Ticket ticketPorId = ticketABM.traer(1L);
+        Ticket ticketPorId = ticketABM.traer(23L);
         if (ticketPorId != null) {
-            System.out.printf("Ticket encontrado por ID 1: %s\n", ticketPorId);
+            System.out.printf("Ticket encontrado por ID 23: %s\n", ticketPorId);
         } else {
             System.out.println("No se encontro ticket con ID 1.");
         }

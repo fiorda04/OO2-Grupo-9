@@ -69,11 +69,14 @@ public class TicketDao {
 		}
 	}
 
-	public Ticket traer(long idTicket) {
+	public Ticket traer(long idTicket) throws HibernateException {
 		Ticket objeto = null;
 		try {
 			iniciaOperacion();
 			objeto = (Ticket) session.get(Ticket.class, idTicket);
+		} catch (HibernateException he) {
+            manejaExcepcion(he);
+            throw he;
 		} finally {
 			session.close();
 		}

@@ -1,24 +1,34 @@
 package negocio;
 import java.util.List;
+import java.util.Set;
 import java.time.LocalDate;
 
+import dao.EstadoDao;
+import dao.RolDao;
 import dao.TicketDao;
+import datos.Categoria;
 import datos.Estado;
 import datos.Prioridad;
+import datos.Rol;
 import datos.Tipo;
 import datos.Usuario;
 import datos.Ticket;
 
 public class TicketABM {
 	    TicketDao ticketDao = new TicketDao();
+	    RolDao rolDao = new RolDao();
+	    EstadoDao estadoDao = new EstadoDao();
 
 	    public Ticket traer(long idTicket) {
 	        return ticketDao.traer(idTicket);
 	    }
 
-	    public long agregar(String titulo, String descripcion, Usuario usuarioCliente, Estado estado, Tipo tipo) {
-	    	//No tiene validacion.
-	        Ticket ticket = new Ticket(titulo, descripcion, usuarioCliente, estado, tipo);
+	    public long agregar(String titulo, String descripcion, Usuario usuarioCliente, Tipo tipo, Set<Categoria> categorias) throws Exception {
+	    	Rol rolCliente = rolDao.traer(1L);
+	    	Estado estadoAbierto = estadoDao.traer(1L);
+	    	//Valida que sea cliente.
+	    	if(usuarioCliente.getRol().equals(rolCliente))throw new Exception("El usuario que crea el ticket debe ser cliente.");
+	        Ticket ticket = new Ticket(titulo, descripcion, usuarioCliente, estadoAbierto, tipo, categorias);
 	        return ticketDao.agregar(ticket);
 	    }
 

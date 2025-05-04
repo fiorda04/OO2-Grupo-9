@@ -10,26 +10,27 @@ public class Ticket {
     private String descripcion;
     private LocalDate fechaCreacion;
     private LocalDate fechaModEst;
-    private Usuario usuario; // Relación uno a uno
-    private Estado estado;   // Relación muchos a uno
-    private Prioridad prioridad; // Relación muchos a uno
-    private Tipo tipo;       // Relación muchos a uno
-    private Set<Categoria> categorias = new HashSet<>(); // Relación muchos a muchos
-    private Respuesta respuesta; // Relación uno a uno
+    private Usuario usuario; // Relaciï¿½n uno a uno
+    private Estado estado;   // Relaciï¿½n muchos a uno
+    private Prioridad prioridad; // Relaciï¿½n muchos a uno
+    private Tipo tipo;       // Relaciï¿½n muchos a uno
+    private Set<Categoria> categorias = new HashSet<>(); // Relaciï¿½n muchos a muchos
+    private Respuesta respuesta; // Relaciï¿½n uno a uno
 
     public Ticket() {
     }
 
-    public Ticket(String titulo, String descripcion, Usuario usuario, Estado estado, Tipo tipo) {
+    public Ticket(String titulo, String descripcion, Usuario usuario, Estado estado, Tipo tipo, Set<Categoria> categorias) {
         this.titulo = titulo;
         this.descripcion = descripcion;
         this.usuario = usuario;
-        this.estado = estado;
+        this.estado = estado; //Se inicializa en estado id = 1. Abierto
         this.tipo = tipo;
         this.fechaCreacion = LocalDate.now();
         this.fechaModEst = LocalDate.now();
         this.prioridad = null; // Se inicializa como null
-        this.respuesta = null; // Se inicializa como null
+        this.respuesta = null; // Se inicializa como nulls
+        this.categorias = categorias;
     }
 
     public long getIdTicket() {

@@ -8,7 +8,6 @@ import org.hibernate.query.Query;
 import datos.Estado;
 import datos.Respuesta;
 import datos.Ticket;
-import datos.Usuario;
 
 import java.time.LocalDate;
 import java.util.List;
